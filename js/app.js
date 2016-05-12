@@ -9,6 +9,7 @@
 
 
 	//Clock
+	//Test comment
 	function myFunc12(){
 		var clockTime = new Date(),
 			seconds = clockTime.getSeconds(),
