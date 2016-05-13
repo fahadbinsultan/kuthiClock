@@ -9,7 +9,39 @@
 
 
 	//Clock
-	//Test comment
+	// function Clock(){
+	// 	this.clockTime = new Date(),
+	// 	this.seconds = clockTime.getSeconds(),
+	// 	this.minutes = clockTime.getMinutes(),
+	// 	this.hours = clockTime.getHours(),
+	// }
+	var Clock = {
+		clockTime : new Date(),
+		seconds : function(){
+			return this.clockTime.getSeconds();
+		},
+		minutes : function(){
+			return this.clockTime.getMinutes();
+		},
+		hours : function(){
+			return this.clockTime.getHours();
+		},
+		ampm : ''
+	}
+	function myFunc24(){
+		//Times in string
+		
+		var secondInString = Clock.seconds().toString(),
+			minuteInString = Clock.minutes().toString();
+		if(secondInString.length < 2) secondInString = '0'+secondInString;
+		if(minuteInString.length < 2) minuteInString = '0'+minuteInString;	
+		id('second').innerHTML = secondInString;
+		id('minute').innerHTML = minuteInString;
+		id('hour').innerHTML = Clock.hours().toString();
+		id('ampm').innerHTML = Clock.ampm;
+		
+	}
+
 	function myFunc12(){
 		var clockTime = new Date(),
 			seconds = clockTime.getSeconds(),
@@ -36,38 +68,23 @@
 		
 	}
 
-	function myFunc24(){
-		var clockTime = new Date(),
-			seconds = clockTime.getSeconds(),
-			minutes = clockTime.getMinutes(),
-			hours = clockTime.getHours();
-		
-		//Times in string
-		var secondInString = seconds.toString(),
-			minuteInString = minutes.toString();
-		if(secondInString.length < 2) secondInString = '0'+secondInString;
-		if(minuteInString.length < 2) minuteInString = '0'+minuteInString;	
-		id('second').innerHTML = secondInString;
-		id('minute').innerHTML = minuteInString;
-		id('hour').innerHTML = hours.toString();
-		
-	}
-	var myFormat;
-	function clockFunction(format){
+	// var myFormat;
 
-		myFormat = setInterval(format, 1000);
-	
-	}
+	// function clockFunction(format){
+	// 	myFormat = setInterval(format, 1000);
+	// }
 
-	id('f12').onclick = function(){
-		clearInterval(myFormat);
-		clockFunction(myFunc12);
-	}
-	id('f24').onclick = function(){
-		clearInterval(myFormat);
-		clockFunction(myFunc24);
-	}
-	clockFunction(myFunc12);
+	// id('f12').onclick = function(){
+	// 	clearInterval(myFormat);
+	// 	clockFunction(myFunc12);
+	// }
+	// id('f24').onclick = function(){
+	// 	clearInterval(myFormat);
+	// 	clockFunction(myFunc24);
+	// }
+
+	// clockFunction(myFunc24);
+	setInterval(myFunc24, 1000);
 	
 	
 
