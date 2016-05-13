@@ -9,82 +9,71 @@
 
 
 	//Clock
-	// function Clock(){
-	// 	this.clockTime = new Date(),
-	// 	this.seconds = clockTime.getSeconds(),
-	// 	this.minutes = clockTime.getMinutes(),
-	// 	this.hours = clockTime.getHours(),
-	// }
-	var Clock = {
-		clockTime : new Date(),
-		seconds : function(){
-			return this.clockTime.getSeconds();
-		},
-		minutes : function(){
-			return this.clockTime.getMinutes();
-		},
-		hours : function(){
-			return this.clockTime.getHours();
-		},
-		ampm : ''
+	function Clock(){
+		var clockTime = new Date();
+		return{
+			seconds : clockTime.getSeconds(),
+			minutes : clockTime.getMinutes(),
+			hours : clockTime.getHours(),
+			ampm : ''
+		};
 	}
+
 	function myFunc24(){
+		var newClock = Clock();
+
 		//Times in string
-		
-		var secondInString = Clock.seconds().toString(),
-			minuteInString = Clock.minutes().toString();
+		var secondInString = newClock.seconds.toString(),
+			minuteInString = newClock.minutes.toString();
 		if(secondInString.length < 2) secondInString = '0'+secondInString;
 		if(minuteInString.length < 2) minuteInString = '0'+minuteInString;	
 		id('second').innerHTML = secondInString;
 		id('minute').innerHTML = minuteInString;
-		id('hour').innerHTML = Clock.hours().toString();
-		id('ampm').innerHTML = Clock.ampm;
-		
+		id('hour').innerHTML = newClock.hours.toString();
+		id('ampm').innerHTML = newClock.ampm;	
 	}
 
 	function myFunc12(){
-		var clockTime = new Date(),
-			seconds = clockTime.getSeconds(),
-			minutes = clockTime.getMinutes(),
-			hours = clockTime.getHours(),
-			ampm = 'am';
+		var newClock = Clock();
+			newClock.ampm = 'am';
 
-			if(hours > 12){
-				ampm = 'pm';
-				hours -= 12;
+			if(newClock.hours > 12){
+				newClock.ampm = 'pm';
+				newClock.hours -= 12;
 			}
-			if(hours == 0) hours = 12;
-			if(hours == 12) ampm = 'pm';
+			if(newClock.hours == 0) newClock.hours = 12;
+			if(newClock.hours == 12) newClock.ampm = 'pm';
 		
 		//Times in string
-		var secondInString = seconds.toString(),
-			minuteInString = minutes.toString();
+		var secondInString = newClock.seconds.toString(),
+			minuteInString = newClock.minutes.toString();
 		if(secondInString.length < 2) secondInString = '0'+secondInString;
 		if(minuteInString.length < 2) minuteInString = '0'+minuteInString;	
 		id('second').innerHTML = secondInString;
 		id('minute').innerHTML = minuteInString;
-		id('hour').innerHTML = hours.toString();
-		id('ampm').innerHTML = ampm;
+		id('hour').innerHTML = newClock.hours.toString();
+		id('ampm').innerHTML = newClock.ampm;
+
+		console.log(newClock.ampm);
 		
 	}
 
-	// var myFormat;
+	var myFormat;
 
-	// function clockFunction(format){
-	// 	myFormat = setInterval(format, 1000);
-	// }
+	function clockFunction(format){
+		myFormat = setInterval(format, 1000);
+	}
 
-	// id('f12').onclick = function(){
-	// 	clearInterval(myFormat);
-	// 	clockFunction(myFunc12);
-	// }
-	// id('f24').onclick = function(){
-	// 	clearInterval(myFormat);
-	// 	clockFunction(myFunc24);
-	// }
+	id('f12').onclick = function(){
+		clearInterval(myFormat);
+		clockFunction(myFunc12);
+	}
+	id('f24').onclick = function(){
+		clearInterval(myFormat);
+		clockFunction(myFunc24);
+	}
 
-	// clockFunction(myFunc24);
-	setInterval(myFunc24, 1000);
+	clockFunction(myFunc12);
 	
 	
 
